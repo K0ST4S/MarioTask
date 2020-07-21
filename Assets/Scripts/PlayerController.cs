@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerRigidbody2D.position.y < deathHeight)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
     }
 

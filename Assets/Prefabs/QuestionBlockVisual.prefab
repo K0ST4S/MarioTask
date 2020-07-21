@@ -271,3 +271,4 @@ MonoBehaviour:
   prefabToAppear: {fileID: 6520921158129951751, guid: 758dc22360416478e9b8ff630036c687,
     type: 3}
   isSecret: 0
+  spriteRenderer: {fileID: 774756388567292981}

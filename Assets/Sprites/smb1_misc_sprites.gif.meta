@@ -69,7 +69,7 @@ TextureImporter:
     21300128: smb1_misc_sprites_64
     21300130: smb1_misc_sprites_65
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 9
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0

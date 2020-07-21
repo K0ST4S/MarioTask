@@ -7,15 +7,22 @@ public class QuestionBlock : MonoBehaviour
 	public int timesToBeHit = 1;
     public GameObject prefabToAppear;
     public bool isSecret;
+    public bool visibleBeforeHit = true;
 
     private Animator anim;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         anim = GetComponentInParent<Animator>();
-        if (isSecret) //if it's a secret Question block
+        if (isSecret)
+        {//if it's a secret Question block
             anim.SetBool("IsSecret", true);
-
+        }
+        if (!visibleBeforeHit)
+        { 
+            spriteRenderer.enabled = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -28,6 +35,10 @@ public class QuestionBlock : MonoBehaviour
                 Instantiate(prefabToAppear, transform.parent.transform.position, Quaternion.identity); //instantiate other obj
                 timesToBeHit--;
                 anim.SetTrigger("GotHit"); //hit animation
+                if (!visibleBeforeHit)
+                {
+                    spriteRenderer.enabled = true;
+                }
             }
         }
 
