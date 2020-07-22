@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
     private float jumpTimeCounter = 0f;
     private float invulnerabilityTimer = 0f;
 
-    private Rigidbody2D playerRigidbody2D;
+    public Rigidbody2D playerRigidbody2D;
 
     private CapsuleCollider2D playerCapsuleCollider2D;
 
@@ -254,5 +255,10 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         takeAwayControll = false; //give back control when it's no longer colliding with anything
+    }
+
+    public void SetSlidingDownAnimation(bool value)
+    {
+        playerAnimator.SetBool("slidingDown", value);
     }
 }

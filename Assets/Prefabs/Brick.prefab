@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7f62363b0dd6c44be8d7f18102f4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brickBreakParticles: {fileID: 56, guid: cfcce359c7d06ad40926a64296e89e52, type: 3}
+  brickBreakParticles: {fileID: 66, guid: cfcce359c7d06ad40926a64296e89e52, type: 3}
   brickBounce: {fileID: 8300000, guid: 1d723059375cdf540acf583b8cfb0ee9, type: 3}
   brickBreak: {fileID: 8300000, guid: 3bc51b6bc7667744f8fe23692e4b7c56, type: 3}
 --- !u!82 &1910622769880281869
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 6111566025426435537}
   - component: {fileID: 3709906762386194361}
   m_Layer: 16
-  m_Name: Bricks
+  m_Name: Brick
   m_TagString: Bricks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Brick : MonoBehaviour
 {
-    public GameObject brickBreakParticles;
+    public ParticleSystem brickBreakParticles;
     public AudioClip brickBounce;
     public AudioClip brickBreak;
 
@@ -19,7 +19,8 @@ public class Brick : MonoBehaviour
         GetComponentInParent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         Destroy(this.gameObject,0.6f);
-        Instantiate(brickBreakParticles, pos, Quaternion.Euler(-90,0,0));
+        ParticleSystem particles = Instantiate(brickBreakParticles, pos, Quaternion.Euler(-90,0,0));
+        Destroy(particles.gameObject, particles.main.duration);
     }
 
     void Awake()
