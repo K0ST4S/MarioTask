@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
+    public static event Action<int> OnScoreUpdate;
+    public static event Action<int> OnCoinsUpdate;
+    public static event Action<int> OnTimeUpdate;
     public int startTimeSeconds = 400;
 
     private float currentTime = 0;
@@ -22,14 +27,11 @@ public class ScoreManager : MonoBehaviour
     {
         currentTime = currentTime - Time.deltaTime;
         goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
-
-        if (score > 2000)
+        OnTimeUpdate?.Invoke((int)currentTime);
+        if (currentTime <= 0)
         {
-            UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-
-        if (currentTime <= 0) ;
-			//RESTART
 
     }
     ////GETS///////////////////////
@@ -61,21 +63,26 @@ public class ScoreManager : MonoBehaviour
 
         goombaKillSpreeCounter++;
         goombaLastKillTimer = 0f;
+        OnScoreUpdate?.Invoke(score);
     }
 
     public void Mushroom()
     {
         score += 1000;
+        OnScoreUpdate?.Invoke(score);
     }
 
     public void Coin()
     {
         score += 200;
         coins++;
+        OnScoreUpdate?.Invoke(score);
+        OnCoinsUpdate?.Invoke(coins);
     }
 
     public void Brick()
     {
         score += 50;
+        OnScoreUpdate?.Invoke(score);
     }
 }

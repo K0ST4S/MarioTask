@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isInvulnerable = false;
 
-    private float movementInput = 0f;
+    public float movementInput = 0f;
     private float jumpTimeCounter = 0f;
     private float invulnerabilityTimer = 0f;
 
@@ -96,29 +96,13 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, new Vector2(0.4f, 0.1f), 0f, Vector2.down, groundCheckRadius, groundMask); //using this for a bigger and more accurate ground check
-        isTouchingGround = (hit.collider != null) ? true : false;
-
         movementInput = Input.GetAxis("Horizontal");
 
         CheckIfStuck(); //Checks if Mario is trying to walk into the wall and get stuck
 
         if (!isDead)
         {
-            if ((playerRigidbody2D.velocity.x > 0 && !isFacingRight) || (playerRigidbody2D.velocity.x < 0 && isFacingRight))
-            {
-                playerAnimator.SetBool("turning", true);
-            }
-            else
-            {
-                playerAnimator.SetBool("turning", false);
-            }
-
-            float movementForceMultiplier = Mathf.Max(maxHorizontalSpeed - Mathf.Abs(playerRigidbody2D.velocity.x), 1);
-
-            playerRigidbody2D.AddForce(new Vector2(movementInput * movementForce * movementForceMultiplier, 0));
-
-            playerRigidbody2D.velocity = new Vector2(Mathf.Clamp(playerRigidbody2D.velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed), Mathf.Clamp(playerRigidbody2D.velocity.y, -maxVerticalSpeed, maxVerticalSpeed));
+            Move(movementInput);
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -151,9 +135,31 @@ public class PlayerController : MonoBehaviour
                 jumpTimeCounter = 0;
             }
 
-            playerAnimator.SetFloat("movementSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
-            playerAnimator.SetBool("touchingGround", isTouchingGround);
         }
+    }
+
+    public void Move(float movementInput)
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, new Vector2(0.4f, 0.1f), 0f, Vector2.down, groundCheckRadius, groundMask); //using this for a bigger and more accurate ground check
+        isTouchingGround = (hit.collider != null) ? true : false;
+
+        if ((playerRigidbody2D.velocity.x > 0 && !isFacingRight) || (playerRigidbody2D.velocity.x < 0 && isFacingRight))
+        {
+            playerAnimator.SetBool("turning", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("turning", false);
+        }
+
+        float movementForceMultiplier = Mathf.Max(maxHorizontalSpeed - Mathf.Abs(playerRigidbody2D.velocity.x), 1);
+
+        playerRigidbody2D.AddForce(new Vector2(movementInput * movementForce * movementForceMultiplier, 0));
+
+        playerRigidbody2D.velocity = new Vector2(Mathf.Clamp(playerRigidbody2D.velocity.x, -maxHorizontalSpeed, maxHorizontalSpeed), Mathf.Clamp(playerRigidbody2D.velocity.y, -maxVerticalSpeed, maxVerticalSpeed));
+
+        playerAnimator.SetFloat("movementSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
+        playerAnimator.SetBool("touchingGround", isTouchingGround);
 
         if (movementInput > 0 && !isFacingRight)
         {
@@ -163,9 +169,7 @@ public class PlayerController : MonoBehaviour
         {
             FlipSprite();
         }
-
     }
-
 
     private void Update()
     {
@@ -193,7 +197,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerRigidbody2D.position.y < deathHeight)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

@@ -43,6 +43,7 @@ TextureImporter:
     21300076: smb1_scenery_sprites_38
     21300078: smb1_scenery_sprites_39
     21300080: smb1_scenery_sprites_40
+    21300082: smb1_scenery_sprites_41
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -83,7 +84,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -933,13 +934,33 @@ TextureImporter:
         width: 23
         height: 98
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: fd4ce7bffd7df6d499c63dac53dee615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: smb1_scenery_sprites_41
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 6
+        width: 42
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 820716c2bf3c110439e6b0fa00c68a8e
       vertices: []
       indices: 
       edges: []

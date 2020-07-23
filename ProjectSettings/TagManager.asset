@@ -56,3 +56,6 @@ TagManager:
   - name: Mario
     uniqueID: 193897587
     locked: 0
+  - name: Foreground
+    uniqueID: 2792679501
+    locked: 0
